@@ -353,7 +353,7 @@ public class PersonController {
 									    if(depId==null){
 											depId=userSession.getBumenId();
 									    }
-										if(depId==57 || depId==56){
+										if(depId==58 || depId==59){
 											//id57取全部 56财务科
 										}else{
 											//设置查询条件添加车站id为登录用户部门id

@@ -249,6 +249,9 @@ public class SzmxController {
 							}
 							//根据部门id获取最后结存记录
 							List<TabHsfJiecun> hsfJc = hsfJcServiceI.selectLastByDepId((long)depId);
+							
+							//如果结存记录为空退出
+							if(hsfJc.isEmpty())return null;
 							//设置开始日期为结存记录日期
 							begingDate = hsfJc.get(0).getJiecunMonth();
 							
