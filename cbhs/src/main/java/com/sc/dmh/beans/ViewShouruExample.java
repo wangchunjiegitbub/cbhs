@@ -1145,6 +1145,216 @@ public class ViewShouruExample {
             addCriterion("shouru_state not between", value1, value2, "shouruState");
             return (Criteria) this;
         }
+
+        public Criteria andShouruBak1IsNull() {
+            addCriterion("shouru_bak1 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1IsNotNull() {
+            addCriterion("shouru_bak1 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1EqualTo(String value) {
+            addCriterion("shouru_bak1 =", value, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1NotEqualTo(String value) {
+            addCriterion("shouru_bak1 <>", value, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1GreaterThan(String value) {
+            addCriterion("shouru_bak1 >", value, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1GreaterThanOrEqualTo(String value) {
+            addCriterion("shouru_bak1 >=", value, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1LessThan(String value) {
+            addCriterion("shouru_bak1 <", value, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1LessThanOrEqualTo(String value) {
+            addCriterion("shouru_bak1 <=", value, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1Like(String value) {
+            addCriterion("shouru_bak1 like", value, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1NotLike(String value) {
+            addCriterion("shouru_bak1 not like", value, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1In(List<String> values) {
+            addCriterion("shouru_bak1 in", values, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1NotIn(List<String> values) {
+            addCriterion("shouru_bak1 not in", values, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1Between(String value1, String value2) {
+            addCriterion("shouru_bak1 between", value1, value2, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak1NotBetween(String value1, String value2) {
+            addCriterion("shouru_bak1 not between", value1, value2, "shouruBak1");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2IsNull() {
+            addCriterion("shouru_bak2 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2IsNotNull() {
+            addCriterion("shouru_bak2 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2EqualTo(String value) {
+            addCriterion("shouru_bak2 =", value, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2NotEqualTo(String value) {
+            addCriterion("shouru_bak2 <>", value, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2GreaterThan(String value) {
+            addCriterion("shouru_bak2 >", value, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2GreaterThanOrEqualTo(String value) {
+            addCriterion("shouru_bak2 >=", value, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2LessThan(String value) {
+            addCriterion("shouru_bak2 <", value, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2LessThanOrEqualTo(String value) {
+            addCriterion("shouru_bak2 <=", value, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2Like(String value) {
+            addCriterion("shouru_bak2 like", value, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2NotLike(String value) {
+            addCriterion("shouru_bak2 not like", value, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2In(List<String> values) {
+            addCriterion("shouru_bak2 in", values, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2NotIn(List<String> values) {
+            addCriterion("shouru_bak2 not in", values, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2Between(String value1, String value2) {
+            addCriterion("shouru_bak2 between", value1, value2, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak2NotBetween(String value1, String value2) {
+            addCriterion("shouru_bak2 not between", value1, value2, "shouruBak2");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3IsNull() {
+            addCriterion("shouru_bak3 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3IsNotNull() {
+            addCriterion("shouru_bak3 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3EqualTo(String value) {
+            addCriterion("shouru_bak3 =", value, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3NotEqualTo(String value) {
+            addCriterion("shouru_bak3 <>", value, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3GreaterThan(String value) {
+            addCriterion("shouru_bak3 >", value, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3GreaterThanOrEqualTo(String value) {
+            addCriterion("shouru_bak3 >=", value, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3LessThan(String value) {
+            addCriterion("shouru_bak3 <", value, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3LessThanOrEqualTo(String value) {
+            addCriterion("shouru_bak3 <=", value, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3Like(String value) {
+            addCriterion("shouru_bak3 like", value, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3NotLike(String value) {
+            addCriterion("shouru_bak3 not like", value, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3In(List<String> values) {
+            addCriterion("shouru_bak3 in", values, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3NotIn(List<String> values) {
+            addCriterion("shouru_bak3 not in", values, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3Between(String value1, String value2) {
+            addCriterion("shouru_bak3 between", value1, value2, "shouruBak3");
+            return (Criteria) this;
+        }
+
+        public Criteria andShouruBak3NotBetween(String value1, String value2) {
+            addCriterion("shouru_bak3 not between", value1, value2, "shouruBak3");
+            return (Criteria) this;
+        }
     }
 
     /**

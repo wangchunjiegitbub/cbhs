@@ -21,6 +21,9 @@
     <result column="sh_number" property="shNumber" jdbcType="INTEGER" />
     <result column="use_zw" property="useZw" jdbcType="VARCHAR" />
     <result column="shouru_state" property="shouruState" jdbcType="INTEGER" />
+    <result column="shouru_bak1" property="shouruBak1" jdbcType="VARCHAR" />
+    <result column="shouru_bak2" property="shouruBak2" jdbcType="VARCHAR" />
+    <result column="shouru_bak3" property="shouruBak3" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
@@ -95,7 +98,7 @@
     -->
     shouru_id, shouru_money, shouru_date, shouru_autodate, shouru_beizu, user_id, dep_id, 
     srtype_id, srtype, department_name, department_order, user_xm, sh_number, use_zw, 
-    shouru_state
+    shouru_state, shouru_bak1, shouru_bak2, shouru_bak3
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sc.dmh.beans.ViewShouruExample" >
     <!--
@@ -134,13 +137,15 @@
       shouru_autodate, shouru_beizu, user_id, 
       dep_id, srtype_id, srtype, 
       department_name, department_order, user_xm, 
-      sh_number, use_zw, shouru_state
+      sh_number, use_zw, shouru_state, 
+      shouru_bak1, shouru_bak2, shouru_bak3
       )
     values (#{shouruId,jdbcType=INTEGER}, #{shouruMoney,jdbcType=DECIMAL}, #{shouruDate,jdbcType=TIMESTAMP}, 
       #{shouruAutodate,jdbcType=TIMESTAMP}, #{shouruBeizu,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
       #{depId,jdbcType=INTEGER}, #{srtypeId,jdbcType=INTEGER}, #{srtype,jdbcType=VARCHAR}, 
       #{departmentName,jdbcType=VARCHAR}, #{departmentOrder,jdbcType=INTEGER}, #{userXm,jdbcType=VARCHAR}, 
-      #{shNumber,jdbcType=INTEGER}, #{useZw,jdbcType=VARCHAR}, #{shouruState,jdbcType=INTEGER}
+      #{shNumber,jdbcType=INTEGER}, #{useZw,jdbcType=VARCHAR}, #{shouruState,jdbcType=INTEGER}, 
+      #{shouruBak1,jdbcType=VARCHAR}, #{shouruBak2,jdbcType=VARCHAR}, #{shouruBak3,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.sc.dmh.beans.ViewShouru" >
@@ -195,6 +200,15 @@
       <if test="shouruState != null" >
         shouru_state,
       </if>
+      <if test="shouruBak1 != null" >
+        shouru_bak1,
+      </if>
+      <if test="shouruBak2 != null" >
+        shouru_bak2,
+      </if>
+      <if test="shouruBak3 != null" >
+        shouru_bak3,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="shouruId != null" >
@@ -241,6 +255,15 @@
       </if>
       <if test="shouruState != null" >
         #{shouruState,jdbcType=INTEGER},
+      </if>
+      <if test="shouruBak1 != null" >
+        #{shouruBak1,jdbcType=VARCHAR},
+      </if>
+      <if test="shouruBak2 != null" >
+        #{shouruBak2,jdbcType=VARCHAR},
+      </if>
+      <if test="shouruBak3 != null" >
+        #{shouruBak3,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -306,6 +329,15 @@
       <if test="record.shouruState != null" >
         shouru_state = #{record.shouruState,jdbcType=INTEGER},
       </if>
+      <if test="record.shouruBak1 != null" >
+        shouru_bak1 = #{record.shouruBak1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shouruBak2 != null" >
+        shouru_bak2 = #{record.shouruBak2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shouruBak3 != null" >
+        shouru_bak3 = #{record.shouruBak3,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -331,7 +363,10 @@
       user_xm = #{record.userXm,jdbcType=VARCHAR},
       sh_number = #{record.shNumber,jdbcType=INTEGER},
       use_zw = #{record.useZw,jdbcType=VARCHAR},
-      shouru_state = #{record.shouruState,jdbcType=INTEGER}
+      shouru_state = #{record.shouruState,jdbcType=INTEGER},
+      shouru_bak1 = #{record.shouruBak1,jdbcType=VARCHAR},
+      shouru_bak2 = #{record.shouruBak2,jdbcType=VARCHAR},
+      shouru_bak3 = #{record.shouruBak3,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

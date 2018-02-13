@@ -61,12 +61,13 @@
             
             <table tableName="view_shouru" domainObjectName="ViewShouru"
             ></table> -->
-            <table tableName="tab_hsf_jiecun" domainObjectName="TabHsfJiecun"
-            ></table>
-            
-            
            
             
+            <table tableName="view_shouru" domainObjectName="ViewShouru"
+            ></table>
+           
+            <table tableName="view_person" domainObjectName="ViewPerson"
+            ></table>
            
             
     </context>
