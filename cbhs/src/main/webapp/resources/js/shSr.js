@@ -15,15 +15,15 @@ $(function(){
 	};
 	
 	//甩挂信息表
-	$('#sr').datagrid({    
+	$('#shsr').datagrid({    
 	    url : '/cbhs/hsf/getSrAll',   
 	    
 	    striped : true,
 	    rownumbers : true,
 	    border : false,
-	    toolbar: '#sr_tool',
+	    toolbar: '#shsr_tool',
 	    
-//	    sortName : 'srType',
+//	    sortName : 'shsrType',
 //	    sortOrder : 'asc', 
 //	    remoteSort : false,
 //	    rowStyler:function(index,row){
@@ -89,18 +89,18 @@ $(function(){
 	    queryParams: {
 	    	
 	    	beginDate : function (){
-				var inforq = $.trim($('input[name="srDate_sr_begin"]').val());
+				var inforq = $.trim($('input[name="shsrDate_shsr_begin"]').val());
 		        var date = new Date();
 		        if( inforq ) inforq = formatDate(date);//如果info日期为true则设置为当天
 		        return inforq;
 			},
 			endDate : function (){
-				var inforq = $.trim($('input[name="srDate_sr_end"]').val());
+				var inforq = $.trim($('input[name="shsrDate_shsr_end"]').val());
 		        var date = new Date();
 		        if( inforq ) inforq = formatDate(date);//如果info日期为true则设置为当天
 		        return inforq;
 			},
-			depId : $.trim($('input[name="depId_sr"]').val()),
+			depId : $.trim($('input[name="depId_shsr"]').val()),
 		}
 
 	 
@@ -109,7 +109,7 @@ $(function(){
 	
 	
 	//添采购信息
-	 $('#sr_add').dialog({ 
+	 $('#shsr_add').dialog({ 
 		top : 150,
         width :300,
         //height : 500,
@@ -123,25 +123,21 @@ $(function(){
 			//点击提交时执行
         	handler : function(){
 				//验证表单成执行
-				if ($('#sr_add').form('validate')){
+				if ($('#shsr_add').form('validate')){
 					$.ajax({ 
                             url : '/cbhs/hsf/addSr', 
                             type : 'POST', 
                             data :{ 
                             	    
-                            	  shouruDate : $.trim($('input[name="sr_date_add"]').val()),
-                            	    srtypeId : $.trim($('input[name="sr_typeid_add"]').val()),
-                            	 shouruMoney : $.trim($('input[name="sr_money_add"]').val()),
-                            	 shouruBeizu : $.trim($('input[name="sr_beizu_add"]').val()),
+                            	  shouruDate : $.trim($('input[name="shsr_date_add"]').val()),
+                            	    srtypeId : $.trim($('input[name="shsr_typeid_add"]').val()),
+                            	 shouruMoney : $.trim($('input[name="shsr_money_add"]').val()),
+                            	 shouruBeizu : $.trim($('input[name="shsr_beizu_add"]').val()),
                             	   
                             	
                             	
                             	
-//                                srCc : $.trim($('#srCc_add').combobox('getText')), 
-//                                srSj : $.trim($('input[name="srSj_add"]').val()), 
-//                                srCs : $.trim($('input[name="srCs_add"]').val()), 
-//                                srZz : $.trim($('input[name="srZz_add"]').val()), 
-//                                srType : $.trim($('input[name="srType_add"]:checked').val()), 
+//                              
                                  
                             }, 
                             beforeSend :function (){ 
@@ -161,12 +157,12 @@ $(function(){
                                         msg : '添加成功！', 
                                     }); 
 
-    								$('#sr_add').dialog('close').form('reset'); 
-                                    $('#sr').datagrid('reload'); 
+    								$('#shsr_add').dialog('close').form('reset'); 
+                                    $('#shsr').datagrid('reload'); 
                                 }else if(data == -1) { 
                                 	$.messager.alert('错误提示!!!', '不能创建！', 'error');
-                                	$('#sr_add').dialog('close').form('reset'); 
-                                    $('#sr').datagrid('reload'); 
+                                	$('#shsr_add').dialog('close').form('reset'); 
+                                    $('#shsr').datagrid('reload'); 
                                    
                                 }else {
                                 	$.messager.alert('警告操作', '未知操作， 请重新提交！', 'warning');
@@ -184,7 +180,7 @@ $(function(){
         	text : '取消' ,
 			iconCls : 'icon-cancel',
         	handler : function(){
-        		$('#sr_add').dialog('close').form('reset');
+        		$('#shsr_add').dialog('close').form('reset');
         	}
         	
         
@@ -195,7 +191,7 @@ $(function(){
 	 }); 
 	 
 	 //修改甩挂信息
-	 $('#sr_edit').dialog({ 
+	 $('#shsr_edit').dialog({ 
         width :350, 
         top : 150,
         title : '修改甩挂信息' ,
@@ -208,16 +204,16 @@ $(function(){
 			//点击提交时执行
         	handler : function(){
         		//验证表单成执行
-				if ($('#sr_edit').form('validate')){
+				if ($('#shsr_edit').form('validate')){
 					$.ajax({ 
                             url : '/cbhs/hsf/updateSr', 
                             type : 'POST', 
                             data :{ 
                             	shouruId : $.trim($('input[name="shouruId_edit"]').val()),
-                            	shouruDate : $.trim($('input[name="sr_date_edit"]').val()),
-                                srtypeId : $.trim($('input[name="sr_typeid_edit"]').val()), 
-                            	shouruMoney : $.trim($('input[name="sr_money_edit"]').val()), 
-                            	shouruBeizu : $.trim($('input[name="sr_beizu_edit"]').val()), 
+                            	shouruDate : $.trim($('input[name="shsr_date_edit"]').val()),
+                                srtypeId : $.trim($('input[name="shsr_typeid_edit"]').val()), 
+                            	shouruMoney : $.trim($('input[name="shsr_money_edit"]').val()), 
+                            	shouruBeizu : $.trim($('input[name="shsr_beizu_edit"]').val()), 
                                 
                                 
                                 
@@ -239,12 +235,12 @@ $(function(){
                                         msg : '信息修改成功！', 
                                     }); 
 
-    								$('#sr_edit').dialog('close').form('reset'); 
-                                    $('#sr').datagrid('reload'); 
+    								$('#shsr_edit').dialog('close').form('reset'); 
+                                    $('#shsr').datagrid('reload'); 
                                 }else if(data == -1) { 
                                 	$.messager.alert('错误提示!!!', '不能修改！', 'error');
-                                	$('#sr_edit').dialog('close').form('reset'); 
-                                    $('#sr').datagrid('reload'); 
+                                	$('#shsr_edit').dialog('close').form('reset'); 
+                                    $('#shsr').datagrid('reload'); 
                                    
                                 }else {
                                 	$.messager.alert('警告操作', '未知操作或没有修改数据， 请重新提交！', 'warning');
@@ -258,7 +254,7 @@ $(function(){
         	text : '取消' ,
 			iconCls : 'icon-cancel',
         	handler : function(){
-        		$('#sr_edit').dialog('close').form('reset');
+        		$('#shsr_edit').dialog('close').form('reset');
         	}
          }]
     
@@ -267,31 +263,31 @@ $(function(){
 	 
 	  
 	 //border-collapse:   separate;   border-spacing:   10px; 
-     sr_tool = { 
+     shsr_tool = { 
     		
     		//点击查询
     		 find :function (){ 
     			
-    		     $('#sr').datagrid('loadData', {total:0,rows:[]});  
-    			 $('#sr').datagrid('load', {    
+    		     $('#shsr').datagrid('loadData', {total:0,rows:[]});  
+    			 $('#shsr').datagrid('load', {    
     				 	beginDate : function (){
-    						var inforq = $.trim($('input[name="srDate_sr_begin"]').val());
+    						var inforq = $.trim($('input[name="shsrDate_shsr_begin"]').val());
 //    				        var date = new Date();
 //    				        if( inforq ) inforq = formatDate(date);//如果info日期为true则设置为当天
     				        return inforq;
     					},
     					endDate : function (){
-    						var inforq = $.trim($('input[name="srDate_sr_end"]').val());
+    						var inforq = $.trim($('input[name="shsrDate_shsr_end"]').val());
 //    				        var date = new Date();
 //    				        if( inforq ) inforq = formatDate(date);//如果info日期为true则设置为当天
     				        return inforq;
     					},
-    					depId : $.trim($('input[name="depId_sr"]').val()),
+    					depId : $.trim($('input[name="depId_shsr"]').val()),
     			 });
             },
             //点击审核
             shEnter :function (){ 
-                var rows = $('#sr').datagrid('getSelections'); 
+                var rows = $('#shsr').datagrid('getSelections'); 
                 if (rows.length >0) { 
 
                     $.messager.confirm('确定 ', '<font color="red">审核确认后不能撤销！！！</font>您要审核所选的<strong>' +  rows.length+ '</strong>条记录吗？',function (flag){ 
@@ -309,13 +305,13 @@ $(function(){
                                      
                                 }, 
                                 beforeSend :function (){ 
-                                   $('#sr').datagrid('loading'); 
+                                   $('#shsr').datagrid('loading'); 
                                 }, 
                                 success :function (data){ 
                                     if (data){ 
-                                       $('#sr').datagrid('loaded'); 
-                                       $('#sr').datagrid('reload'); 
-                                       $('#sr').datagrid('unselectAll'); 
+                                       $('#shsr').datagrid('loaded'); 
+                                       $('#shsr').datagrid('reload'); 
+                                       $('#shsr').datagrid('unselectAll'); 
                                        $.messager.show({ 
 
                                            title : '提示', 
@@ -333,20 +329,20 @@ $(function(){
             }, 
     		//点击新增 粉票
     		add :function (){ 
-        	    $('#sr_add').dialog('open');
-        	    $("#sr_add_table").show();
-        	    $.parser.parse('#sr_add');//form显示后datebox控件不可用时添加这句扫描代码初始化datebox必须填加id否则发生不确定问题
+        	    $('#shsr_add').dialog('open');
+        	    $("#shsr_add_table").show();
+        	    $.parser.parse('#shsr_add');//form显示后datebox控件不可用时添加这句扫描代码初始化datebox必须填加id否则发生不确定问题
         	    
         	  //不能用name加datebox只能用id加datebox
-                var rq = $('input[name="srDate_sr"]').val();//获取查询日期赋值给表单
-                $('#sr_date_add').datebox('setValue',rq);//如：$("input[name='mydate']").datebox('getValue')，会报TypeError: $.data(...) is undefined。
-//                var number = $('input[name="srTime_sr"]:checked').val();
-//                $("input[name='srTime_sr_add'][value=" + number + "]").attr("checked",true);
+                var rq = $('input[name="shsrDate_shsr"]').val();//获取查询日期赋值给表单
+                $('#shsr_date_add').datebox('setValue',rq);//如：$("input[name='mydate']").datebox('getValue')，会报TypeError: $.data(...) is undefined。
+//                var number = $('input[name="shsrTime_shsr"]:checked').val();
+//                $("input[name='shsrTime_shsr_add'][value=" + number + "]").attr("checked",true);
            }, 
            
            //点击删除
            remove :function (){ 
-               var rows = $('#sr').datagrid('getSelections'); 
+               var rows = $('#shsr').datagrid('getSelections'); 
                if (rows.length >0) { 
 
                    $.messager.confirm('确定 ', '您要删除所选的<strong>' +  rows.length+ '</strong>条记录吗？',function (flag){ 
@@ -364,13 +360,13 @@ $(function(){
                                     
                                }, 
                                beforeSend :function (){ 
-                                  $('#sr').datagrid('loading'); 
+                                  $('#shsr').datagrid('loading'); 
                                }, 
                                success :function (data){ 
                                    if (data){ 
-                                      $('#sr').datagrid('loaded'); 
-                                      $('#sr').datagrid('reload'); 
-                                      $('#sr').datagrid('unselectAll'); 
+                                      $('#shsr').datagrid('loaded'); 
+                                      $('#shsr').datagrid('reload'); 
+                                      $('#shsr').datagrid('unselectAll'); 
                                       $.messager.show({ 
 
                                           title : '提示', 
@@ -388,11 +384,11 @@ $(function(){
            }, 
            //点击修改
            edit :function (){
-        	   $("#sr_edit_table").show();
-       	      // $('input[name="srSj_edit"]').css("width","150px");
+        	   $("#shsr_edit_table").show();
+       	      // $('input[name="shsrSj_edit"]').css("width","150px");
         	   //!!!!渲染必须在这个位置否则获取datebox数据不能刷新!!!!!!!!!!!!!!!!!
-        	   $.parser.parse('#sr_edit');//form显示后datebox控件不可用时添加这句扫描代码初始化datebox
-        	   var rows = $('#sr').datagrid('getSelections');
+        	   $.parser.parse('#shsr_edit');//form显示后datebox控件不可用时添加这句扫描代码初始化datebox
+        	   var rows = $('#shsr').datagrid('getSelections');
         	   //console.log(rows);
         	   if(rows.length > 1){
         		   $.messager.alert('警告操作', '编辑记录只能选择一条数据！', 'warning');
@@ -413,15 +409,15 @@ $(function(){
  							$.messager.progress('close'); 
                             if (data) { 
                             	var obj = $.parseJSON(data);
-                            	//控制台打印:console.log(obj.srCc);
+                            	//控制台打印:console.log(obj.shsrCc);
                             	
                             	//成功获取数据显示form表单页面
-                            	$('#sr_edit').form('load',{
+                            	$('#shsr_edit').form('load',{
                             		shouruId_edit : obj.shouruId,
-                            		 sr_date_edit : obj.shouruDate,
-                            	   sr_typeid_edit : obj.srtypeId,
-                            		sr_money_edit : obj.shouruMoney,
-                            		sr_beizu_edit : obj.shouruBeizu,
+                            		shsr_date_edit : obj.shouruDate,
+                            		shsr_typeid_edit : obj.srtypeId,
+                            		shsr_money_edit : obj.shouruMoney,
+                            		shsr_beizu_edit : obj.shouruBeizu,
                                     
      
                            		
