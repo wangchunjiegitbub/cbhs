@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    
+    <!-- <classPathEntry location="C:\Users\lenovo\.m2\repository\com\microsoft\sqlserver\sqljdbc4\4.0\sqljdbc4-4.0.jar" /> --> 
+    
+    <context id="test" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>  
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin> 
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> 
+        <commentGenerator>
+            <!-- .项目 右键》run as 》 maven bulid 》弹出对话框》在goals中输入mybatis-generator:generate -->
+            <!-- 生成文件在target目录下 -->
+            <!-- 如果生成日期，会造成即使修改一个字段，整个实体类所有属性都会发生变化，不利于版本控制，所以设置为true -->
+            <property name="suppressDate" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="false" />
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -mysql-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://localhost/db_cbhs" userId="root" password="admin">
+        </jdbcConnection>
+        
+        <javaTypeResolver>
+            <!-- This property is used to specify whether MyBatis Generator should 
+                force the use of java.math.BigDecimal for DECIMAL and NUMERIC fields, -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--数据库链接URL，用户名、密码 -mssqlserver -->
+        <!-- <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            connectionURL="jdbc:sqlserver://10.39.91.22:1433;Database=laoren" userId="sa" password="1">
+        </jdbcConnection> -->
+        
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.sc.dmh.beans"
+            targetProject="target">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="com.sc.dmh.sql"
+            targetProject="target">
+            <property name="enableSubPackages" value="true" />
+            
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+            targetPackage="com.sc.dmh.mapper" implementationPackage="com.sc.dmh.mapper.impl"  targetProject="target">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!-- 要生成哪些表 -->
+        	<!-- <table tableName="*" ></table> -->
+        	
+        	<!-- <table tableName="tab_hsf_person" domainObjectName="TabHsfPerson"
+            ></table> -->
+          <!--   
+            <table tableName="tab_hsf_shouru" domainObjectName="TabHsfShouru"
+            ></table>
+            
+            <table tableName="view_shouru" domainObjectName="ViewShouru"
+            ></table> -->
+            <table tableName="tab_hsf_jiecun" domainObjectName="TabHsfJiecun"
+            ></table>
+            
+            
+           
+            
+           
+            
+    </context>
+</generatorConfiguration>

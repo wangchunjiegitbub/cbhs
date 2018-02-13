@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic DataGrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table class="easyui-datagrid" title="Column Group" style="height:250px"
+			data-options="rownumbers:true,singleSelect:true,fitColumns:true,url:'datagrid_data1.json',method:'get'">
+		<thead>
+			<tr>
+				<th data-options="field:'a',width:80" rowspan="3" colspan="1">车站</th>
+				<th data-options="field:'b',width:100" rowspan="3" colspan="1">实装</th>
+				<th data-options="field:'c',width:100" rowspan="1" colspan="3">卸车</th>
+				<th data-options="field:'d',width:100" rowspan="1" colspan="8">待卸车</th>
+				<th data-options="field:'e',width:100" rowspan="1" colspan="6">待发车</th>
+				<th data-options="field:'f',width:100" rowspan="1" colspan="8">甩挂</th>
+				<th data-options="field:'g',width:100" rowspan="1" colspan="3">现在车</th>
+				<th data-options="field:'h',width:100" rowspan="1" colspan="3">成绩</th>
+				<th data-options="field:'i',width:100" rowspan="1" colspan="1">排车率</th>
+			</tr>
+			<tr>
+				<th data-options="field:'j',width:80,align:'right'" rowspan="2" colspan="1">前日待卸</th>
+				<th data-options="field:'k',width:80,align:'right'" rowspan="2" colspan="1">本日到达</th>
+				<th data-options="field:'l',width:60,align:'center'" rowspan="2" colspan="1">实卸</th>
+				
+				<th data-options="field:'m',width:80,align:'right'" rowspan="2" colspan="1">总数</th>
+				<th data-options="field:'n',width:80,align:'right'" rowspan="2" colspan="1">收货人</th>
+				<th data-options="field:'o',width:60,align:'center'" rowspan="2" colspan="1">品名</th>
+				<th data-options="field:'p',width:80,align:'right'" rowspan="2" colspan="1">车数</th>
+				<th data-options="field:'q',width:80,align:'right'" rowspan="2" colspan="1">到达车次</th>
+				<th data-options="field:'r',width:60,align:'center'" rowspan="2" colspan="1">到达时间</th>
+				<th data-options="field:'s',width:80,align:'right'" rowspan="2" colspan="1">卸车地点</th>
+				<th data-options="field:'t',width:80,align:'right'" rowspan="2" colspan="1">对位情况</th>
+				
+				<th data-options="field:'u',width:60,align:'center'" rowspan="1" colspan="3">重车</th>
+				<th data-options="field:'v',width:80,align:'right'" rowspan="1" colspan="3">空车</th>
+				
+				<th data-options="field:'w',width:80,align:'right'" rowspan="1" colspan="4">到达</th>
+				<th data-options="field:'x',width:60,align:'center'" rowspan="1" colspan="4">出发</th>
+				
+				<th data-options="field:'y',width:80,align:'right'" rowspan="2" colspan="1">运用车</th>
+				<th data-options="field:'z',width:80,align:'right'" rowspan="2" colspan="1">非运用车</th>
+				<th data-options="field:'a1',width:60,align:'center'" rowspan="2" colspan="1">现在车</th>
+				
+				<th data-options="field:'b1',width:80,align:'right'" rowspan="2" colspan="1">净载重</th>
+				<th data-options="field:'c1',width:80,align:'right'" rowspan="2" colspan="1">一次</th>
+				<th data-options="field:'d1',width:60,align:'center'" rowspan="2" colspan="1">中转</th>
+				</tr>
+			 <tr>
+				<th data-options="field:'e1',width:80,align:'right' "rowspan="1" colspan="1">方向车数</th>
+				<th data-options="field:'f1',width:80,align:'right'" rowspan="1" colspan="1">站内</th>
+				<th data-options="field:'g1',width:240" rowspan="1" colspan="1">其他</th>
+				<th data-options="field:'h1',width:60,align:'center'" rowspan="1" colspan="1">车次</th>
+				<th data-options="field:'i1',width:240" rowspan="1" colspan="1">时间</th>
+				<th data-options="field:'j1',width:60,align:'center'" rowspan="1" colspan="1">车数</th>
+				<th data-options="field:'k1',width:60,align:'center'" rowspan="1" colspan="1">中转</th>
+				<th data-options="field:'l1',width:60,align:'center'" rowspan="1" colspan="1">车次</th>
+				<th data-options="field:'m1',width:240" rowspan="1" colspan="1">时间</th>
+				<th data-options="field:'n1',width:60,align:'center'" rowspan="1" colspan="1">车数</th>
+				<th data-options="field:'o1',width:60,align:'center'" rowspan="1" colspan="1">中转</th>
+			</tr>  
+		</thead>
+	</table>
+
+<script type="text/javascript">
+$('#dg').datagrid({    
+    fit: true , 
+    fitColumns: true ,
+    columns:[[
+              {"field": "", "colspan": "2", "rowspan": "2", "title": "到底车次" },
+              {"field": "", "colspan": "5", "title": "25555" },
+              {"field": "上月底风电并网容量", "colspan": "2", "title": "3555555555555555"}],
+              
+              [{ "field": "上月底风电并网容量", "rowspan": "2", "title": "2013年9月风电并网容量" },
+              {"field": "上月底风电并网容量", "colspan": "4", "title": "核准在建项目当年投产容量" },
+              { "field": "季度底风电并网容量", "rowspan": "2", "title": "2014年3季度风电并网容量", "width": "100" },
+              { "field": "季度平均新增并网容量", "rowspan": "2", "title": "季度平均新增并网容量", "width": "100"}],
+             
+              [{ "field": "主导年底预计风电并网容量", "title": "项目追踪", "width": "100" },
+              { "field": "法一年底预计风电并网容量", "title": "趋势外推", "width": "100" },
+              { "field": "核准在建项目当年投产容量", "title": "合计111111111111111", "width": "50" },
+              { "field": "10月核准在建项目当年投产容量", "title": "10月111111111111", "width": "50" },
+              { "field": "11月核准在建项目当年投产容量", "title": "11月11111111111", "width": "50" },
+              { "field": "12月核准在建项目当年投产容量", "title": "12月1111111111111", "width": "50"}
+              ]]    
+});  
+</script>
+
+</body>
+</html>

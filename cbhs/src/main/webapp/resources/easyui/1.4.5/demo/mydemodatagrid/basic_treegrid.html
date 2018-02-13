@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic TreeGrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+</head>
+<body>
+	<h2>Basic TreeGrid</h2>
+	<p>TreeGrid allows you to expand or collapse group rows.</p>
+	<div style="margin:20px 0;"></div>
+	<table title="Folder Browser" class="easyui-treegrid" style="width:1920px;height:500px"
+			data-options="
+				url: 'treegrid_data1.json',
+				method: 'get',
+				rownumbers: true,
+				idField: 'id',
+				treeField: 'name'
+			">
+		<thead>
+			<tr>
+				<th data-options="field:'name',width:80, align:'left' , halign: 'center'" rowspan="3" colspan="1">车<br>站</th>
+				<th data-options="field:'size',width:100" rowspan="3" colspan="1">实装</th>
+				<th data-options="field:'date',width:100" rowspan="1" colspan="3">卸车</th>
+				<th data-options="field:'d',width:100" rowspan="1" colspan="8">待卸车</th>
+				<th data-options="field:'e',width:100" rowspan="1" colspan="6">待发车</th>
+				
+			</tr>
+			<tr>
+				<th data-options="field:'j',width:30" rowspan="2" colspan="1">前<br>日<br>待<br>卸</th>
+				<th data-options="field:'k',width:80" rowspan="2" colspan="1">本日到达</th>
+				<th data-options="field:'l',width:60" rowspan="2" colspan="1">实卸</th>
+				
+				<th data-options="field:'m',width:80" rowspan="2" colspan="1">总数</th>
+				<th data-options="field:'n',width:80" rowspan="2" colspan="1">收货人</th>
+				<th data-options="field:'o',width:60" rowspan="2" colspan="1">品名</th>
+				<th data-options="field:'p',width:80" rowspan="2" colspan="1">车数</th>
+				<th data-options="field:'q',width:80" rowspan="2" colspan="1">到达车次</th>
+				<th data-options="field:'r',width:60" rowspan="2" colspan="1">到达时间</th>
+				<th data-options="field:'s',width:80" rowspan="2" colspan="1">卸车地点</th>
+				<th data-options="field:'t',width:80" rowspan="2" colspan="1">对位情况</th>
+				
+				<th data-options="field:'u',width:60" rowspan="1" colspan="3">重车</th>
+				<th data-options="field:'v',width:80" rowspan="1" colspan="3">空车</th>
+				
+				
+				</tr>
+			 <tr>
+				<th data-options="field:'e1',width:80" rowspan="1" colspan="1">方向车数</th>
+				<th data-options="field:'f1',width:80" rowspan="1" colspan="1">站内</th>
+				<th data-options="field:'g1',width:80" rowspan="1" colspan="1">其他</th>
+				<th data-options="field:'h1',width:80" rowspan="1" colspan="1">车种车数</th>
+				<th data-options="field:'i1',width:80" rowspan="1" colspan="1">站内</th>
+				<th data-options="field:'j1',width:60" rowspan="1" colspan="1">其他</th>
+				
+			</tr>  
+		</thead>
+	</table>
+
+</body>
+</html>

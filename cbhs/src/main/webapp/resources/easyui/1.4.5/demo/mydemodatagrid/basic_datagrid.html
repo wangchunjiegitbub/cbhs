@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic DataGrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="printDataGrid.js"></script>
+</head>
+<body>
+	<h2>Basic DataGrid</h2>
+	<p>The DataGrid is created from markup, no JavaScript code needed.</p>
+	<div id="printDiv"></div>
+	
+	<table id="printGrid" class="easyui-datagrid" title="Basic DataGrid" style="width:100%;height:500px"
+			data-options="
+				singleSelect:true,
+				collapsible:true,
+				url:'datagrid_data3.json',
+				method:'get', 
+				align:'left' , 
+				toolbar: '#tb',
+				halign: 'center'
+				
+				">
+		<thead>
+			<tr>
+				<th data-options="field:'a',width:80, align:'left' , halign: 'center'" rowspan="3" colspan="1">车<br>站</th>
+				<th data-options="field:'b',width:100" rowspan="3" colspan="1">实装</th>
+				<th data-options="field:'c',width:100" rowspan="1" colspan="3">卸车</th>
+				<th data-options="field:'d',width:100" rowspan="1" colspan="8">待卸车</th>
+				<th data-options="field:'e',width:100" rowspan="1" colspan="6">待发车</th>
+				<th data-options="field:'f',width:100" rowspan="1" colspan="8">甩挂</th>
+				<th data-options="field:'g',width:100" rowspan="1" colspan="3">现在车</th>
+				<th data-options="field:'h',width:100" rowspan="1" colspan="3">成绩</th>
+				<th data-options="field:'i',width:30" rowspan="3" colspan="1">排<br>车<br>率</th>
+			</tr>
+			<tr>
+				<th data-options="field:'j',width:30" rowspan="2" colspan="1">前<br>日<br>待<br>卸</th>
+				<th data-options="field:'k',width:80" rowspan="2" colspan="1">本日到达</th>
+				<th data-options="field:'l',width:60" rowspan="2" colspan="1">实卸</th>
+				
+				<th data-options="field:'m',width:80" rowspan="2" colspan="1">总数</th>
+				<th data-options="field:'n',width:80" rowspan="2" colspan="1">收货人</th>
+				<th data-options="field:'o',width:60" rowspan="2" colspan="1">品名</th>
+				<th data-options="field:'p',width:80" rowspan="2" colspan="1">车数</th>
+				<th data-options="field:'q',width:80" rowspan="2" colspan="1">到达车次</th>
+				<th data-options="field:'r',width:60" rowspan="2" colspan="1">到达时间</th>
+				<th data-options="field:'s',width:80" rowspan="2" colspan="1">卸车地点</th>
+				<th data-options="field:'t',width:80" rowspan="2" colspan="1">对位情况</th>
+				
+				<th data-options="field:'u',width:60" rowspan="1" colspan="3">重车</th>
+				<th data-options="field:'v',width:80" rowspan="1" colspan="3">空车</th>
+				
+				<th data-options="field:'w',width:80" rowspan="1" colspan="4">到达</th>
+				<th data-options="field:'x',width:60" rowspan="1" colspan="4">出发</th>
+				
+				<th data-options="field:'y',width:80" rowspan="2" colspan="1">运用车</th>
+				<th data-options="field:'z',width:80" rowspan="2" colspan="1">非运用车</th>
+				<th data-options="field:'a1',width:60" rowspan="2" colspan="1">现在车</th>
+				
+				<th data-options="field:'b1',width:80" rowspan="2" colspan="1">净载重</th>
+				<th data-options="field:'c1',width:80" rowspan="2" colspan="1">一次</th>
+				<th data-options="field:'d1',width:60" rowspan="2" colspan="1">中转</th>
+				</tr>
+			 <tr>
+				<th data-options="field:'e1',width:80" rowspan="1" colspan="1">方向车数</th>
+				<th data-options="field:'f1',width:80" rowspan="1" colspan="1">站内</th>
+				<th data-options="field:'g1',width:80" rowspan="1" colspan="1">其他</th>
+				<th data-options="field:'h1',width:80" rowspan="1" colspan="1">车种车数</th>
+				<th data-options="field:'i1',width:80" rowspan="1" colspan="1">站内</th>
+				<th data-options="field:'j1',width:60" rowspan="1" colspan="1">其他</th>
+				<th data-options="field:'k1',width:60" rowspan="1" colspan="1">车次</th>
+				<th data-options="field:'l1',width:60" rowspan="1" colspan="1">时间</th>
+				<th data-options="field:'m1',width:60" rowspan="1" colspan="1">车数</th>
+				<th data-options="field:'n1',width:60" rowspan="1" colspan="1">中转</th>
+				<th data-options="field:'o1',width:60" rowspan="1" colspan="1">车次</th>
+				<th data-options="field:'p1',width:60" rowspan="1" colspan="1">时间</th>
+				<th data-options="field:'q1',width:60" rowspan="1" colspan="1">车数</th>
+				<th data-options="field:'r1',width:60" rowspan="1" colspan="1">中转</th>
+			</tr>  
+		</thead>
+	</table>
+	
+	
+	<div id="tb" style="height:auto">
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="reject()">打印</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject()">Reject</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="getChanges()">GetChanges</a>
+	</div>
+<script type="text/javascript">
+function reject(){
+	printEasyuiDataGrid(title, $('#printGrid'), $('#printDiv'))
+	window.print();
+	}
+	
+/*打印easyui的datagrid*/
+/**/
+function printEasyuiDataGrid(title, printGrid, printDiv) {
+    var tableString = '<table cellspacing="0" class="print-body">';
+    var frozenColumns = printGrid.datagrid('options').frozenColumns;  // 得到frozenColumns对象
+    var columns = printGrid.datagrid('options').columns;    // 得到columns对象
+    var nameList = '';
+    // 载入title
+    if (typeof columns != 'undefined' && columns != '') {
+        var count = columns.length;
+        var colspan = 0;
+        for (var i = 0; i < columns[0].length; i++) {
+            var col = columns[0][i].colspan;
+            if (col != undefined) {
+                colspan += col;
+            }
+            else {
+                colspan += 1;
+            }
+        }
+        tableString += '\n<tr><td colspan=' + colspan + ' class="print-title">' + title + '</td></tr>'
+        $(columns).each(function (index) {
+            tableString += '\n<tr>';
+            if (typeof frozenColumns != 'undefined' && typeof frozenColumns[index] != 'undefined') {
+                for (var i = 0; i < frozenColumns[index].length; ++i) {
+                    if (!frozenColumns[index][i].hidden) {
+                        tableString += '\n<th width="' + frozenColumns[index][i].width + '"';
+                        if (typeof frozenColumns[index][i].rowspan != 'undefined' && frozenColumns[index][i].rowspan > 1) {
+                            tableString += ' rowspan="' + frozenColumns[index][i].rowspan + '"';
+                        }
+                        if (typeof frozenColumns[index][i].colspan != 'undefined' && frozenColumns[index][i].colspan > 1) {
+                            tableString += ' colspan="' + frozenColumns[index][i].colspan + '"';
+                        }
+                        if (typeof frozenColumns[index][i].field != 'undefined' && frozenColumns[index][i].field != '') {
+                            nameList += ',{"f":"' + frozenColumns[index][i].field + '", "a":"' + frozenColumns[index][i].align + '"}';
+                        }
+                        tableString += '>' + frozenColumns[0][i].title + '</th>';
+                    }
+                }
+            }
+            for (var i = 0; i < columns[index].length; ++i) {
+                if (!columns[index][i].hidden) {
+                    tableString += '\n<th width="' + columns[index][i].width + '"';
+                    if (typeof columns[index][i].rowspan != 'undefined' && columns[index][i].rowspan > 1) {
+                        tableString += ' rowspan="' + columns[index][i].rowspan + '"';
+                    }
+                    if (typeof columns[index][i].colspan != 'undefined' && columns[index][i].colspan > 1) {
+                        tableString += ' colspan="' + columns[index][i].colspan + '"';
+                    }
+                    if (typeof columns[index][i].field != 'undefined' && columns[index][i].field != '') {
+                        nameList += ',{"f":"' + columns[index][i].field + '", "a":"' + columns[index][i].align + '"}';
+                    }
+                    tableString += '>' + columns[index][i].title + '</th>';
+                }
+            }
+            tableString += '\n</tr>';
+        });
+    }
+    // 载入内容
+    var rows = printGrid.datagrid("getRows"); // 这段代码是获取当前页的所有行
+    var nl = eval('([' + nameList.substring(1) + '])');
+    for (var i = 0; i < rows.length; ++i) {
+        tableString += '\n<tr>';
+        $(nl).each(function (j) {
+
+            tableString += '\n<td';
+            if (nl[j].a != 'undefined' && nl[j].a != '') {
+                tableString += ' style="text-align:' + nl[j].a + ';"';
+            }
+            tableString += '>';
+            tableString += rows[i][nl[j].f];
+            tableString += '</td>';
+        });
+        tableString += '\n</tr>';
+    }
+    tableString += '\n</table>';
+    $(printDiv).empty().append(tableString);
+    $(printDiv).show();
+    $(printDiv).dialog({
+        title: "打印",
+        cache: false,
+        modal: true,
+        height:600
+    });
+}
+</script>
+</body>
+</html>
