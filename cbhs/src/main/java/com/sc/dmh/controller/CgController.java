@@ -42,7 +42,7 @@ import com.sc.dmh.beans.ViewCg;
 import com.sc.dmh.beans.ViewCgExample;
 import com.sc.dmh.beans.ViewCgExample.Criteria;
 import com.sc.dmh.service.inter.HsfCgServiceI;
-
+import com.sc.dmh.service.inter.HsfJcServiceI;
 import com.sc.dmh.service.inter.UserServiceI;
 import com.sc.dmh.service.inter.ViewCgServiceI;
 import com.sc.dmh.util.DateStringUtil;
@@ -69,7 +69,14 @@ public class CgController {
 	@Autowired
 	private HsfCgServiceI cgService;
 	
+	@Autowired
+	private HsfJcServiceI hsfJcServiceI;
+
 	
+	
+	public void setHsfJcServiceI(HsfJcServiceI hsfJcServiceI) {
+		this.hsfJcServiceI = hsfJcServiceI;
+	}
 
 	public void setCgService(HsfCgServiceI cgService) {
 		this.cgService = cgService;

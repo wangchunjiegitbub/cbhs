@@ -166,7 +166,7 @@ $(function(){
     								$('#person_add').dialog('close').form('reset'); 
                                     $('#person').datagrid('reload'); 
                                 }else if(data == -1) { 
-                                	$.messager.alert('错误提示!!!', '不能创建！', 'error');
+                                	$.messager.alert('错误提示!!!', '已经结账不能修改人员信息，必须修改时请先删除结账信息！', 'error');
                                 	$('#person_add').dialog('close').form('reset'); 
                                     $('#person').datagrid('reload'); 
                                    

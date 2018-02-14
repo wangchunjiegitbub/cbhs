@@ -1,25 +1,17 @@
 package com.sc.dmh.controller;
 
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.Cookie;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-
-
-
-
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -28,17 +20,17 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
+
 import com.sc.dmh.annotation.AuthPassport;
 import com.sc.dmh.beans.CbhsUser;
-import com.sc.dmh.beans.CbhsUserExample;
-import com.sc.dmh.beans.ComboTree;
-import com.sc.dmh.beans.TabHsfCg;
-import com.sc.dmh.beans.TabHsfCgExample;
+
+import com.sc.dmh.beans.TabHsfJiecun;
 import com.sc.dmh.beans.TabHsfPerson;
 import com.sc.dmh.beans.TabHsfPersonExample;
 import com.sc.dmh.beans.ViewPerson;
 import com.sc.dmh.beans.ViewPersonExample;
 import com.sc.dmh.beans.ViewPersonExample.Criteria;
+import com.sc.dmh.service.inter.HsfJcServiceI;
 import com.sc.dmh.service.inter.HsfPersonServiceI;
 
 import com.sc.dmh.service.inter.UserServiceI;
@@ -51,7 +43,7 @@ import com.sc.dmh.service.inter.ViewPersonServiceI;
 @RequestMapping("/hsf")
 public class PersonController {
 
-	
+	private static final Logger logger = Logger.getLogger(PersonController.class);
 	
 	@Autowired
 	private UserServiceI userService;
@@ -62,7 +54,8 @@ public class PersonController {
 	@Autowired
 	private ViewPersonServiceI viewPersonService;
 	
-	
+	@Autowired
+	private HsfJcServiceI hsfJcServiceI;
 
 	public void setViewPersonService(ViewPersonServiceI viewPersonService) {
 		this.viewPersonService = viewPersonService;
@@ -206,8 +199,15 @@ public class PersonController {
 					
 				}
 			
+				List<TabHsfJiecun> jcList = hsfJcServiceI.selectLastByDepId(Long.valueOf(userSession.getBumenId().toString()));
 				
-				
+				//结存不为空并且-结账时间不在人员添加日期之前
+				if( !jcList.isEmpty() && !jcList.get(0).getJiecunMonth().before(formPerson.getPersonTime())){
+					
+					//返回-1代表已经结账不能修改人员信息，必须修改时先删除结账信息再添加人员添加完成后再次结账。
+					resp.getWriter().write("-1");
+					return null;
+				}
 					try {
 						
 						//添加粉票记录
@@ -233,76 +233,25 @@ public class PersonController {
 						@RequestMapping("/getPersonAll")
 						public String getPersonAll(HttpServletRequest request,
 								HttpServletResponse resp) throws IOException {
-							// @PathVariable
-							// String
-							// id(路径变量如@RequestMapping("/{id}/personowUser"))
-							/*
-							 * 
-							 * 2. 校验表单数据 3. 使用service查询，得到User 4. 查看用户是否存在，如果不存在： * 保存错误信息：用户名或密码错误
-							 * * 保存用户数据：为了回显 * 转发到login.jsp 5. 如果存在，查看状态，如果状态为false： * 保存错误信息：您没有激活
-							 * * 保存表单数据：为了回显 * 转发到login.jsp 6. 登录成功： 　　* 保存当前查询出的user到session中 *
-							 * 保存当前用户的名称到cookie中，注意中文需要编码处理。
-							 */
-							/*
-							 * 2. 校验
-							 */
-
-							/*
-							 * 3. 调用userService查询方法
-							 */
+							
 							resp.setContentType("text/html;charset=utf-8");
-							//创建点名会对象
-							//TabRpf formRpfFp = new TabRpf();
-							//得到用户
+							
 							CbhsUser userSession = (CbhsUser) request.getSession().getAttribute("sessionUser");
 							
 							if(userSession == null ){
-								//获取用户部门设置到车站id		
+										
 								return null;
 								
 							}
 						
-							
-							
 								try {
-									//DateMonthFirstLast a = DateStringUtil.getDateFirstLast(formRpfFp.getInDate());
 									
-//									TabHsfPersonExample example = new TabHsfPersonExample();
-//									Criteria criteria = example.createCriteria();
-									
-									//设置查询条件添加车站id为登录用户部门id
-									//criteria.andPersonDepidEqualTo(userSession.getBumenId());
-									//设置查询条件添加日期条件
-									
-									
-//									
-									//查询当月当前车站售票记录
-//									List<TabHsfPerson> rpfAll = hsfPersonService.selectByExample(example);
-									
-									
-									
-									
-//								
-									
-									
-									
-									// {"total":10 , "rows":[{},{}]}
-//									String json = "{\"total\":" + rpfAll.size() + " , \"rows\":"
-//											+ JSON.toJSONString(rpfAll) + "}";
-									
-									
-//									resp.getWriter().write(JSON.toJSONString(rpfAll));
 									
 									
 								} catch (Exception e) {
 									
 									e.printStackTrace();
 								} 
-							
-								
-								
-								
-								
 								return null;
 							} 
 						
@@ -407,6 +356,13 @@ public class PersonController {
 							
 							//统一设置编码
 							resp.setContentType("text/html;charset=utf-8");
+							
+							CbhsUser userSession = (CbhsUser) request.getSession().getAttribute("sessionUser");
+							//
+							
+							
+							//字符串转list
+							
 							if(ids == null) return "";
 							
 							//转换参数为list
@@ -422,14 +378,44 @@ public class PersonController {
 							List<Integer> idList = java.util.Arrays.asList(num);
 							
 							
+							TabHsfPersonExample example = new TabHsfPersonExample();
+							com.sc.dmh.beans.TabHsfPersonExample.Criteria c = example.createCriteria();
+							c.andPersonIdIn(idList);
+							
+							List<TabHsfPerson> hsfPersonList = hsfPersonService.selectByExample(example);
+							
+							
+							//获取结账最后记录
+							List<TabHsfJiecun> jcList = hsfJcServiceI.selectLastByDepId(Long.valueOf(userSession.getBumenId().toString()));
+							
+							//结存不为空并且-删除的人员列表不为空
+							if( !jcList.isEmpty() && !hsfPersonList.isEmpty()){
+								
+								
+								for(TabHsfPerson pserson : hsfPersonList){
+									//结账时间不在删除人员日期之前
+									if(!jcList.get(0).getJiecunMonth().before(pserson.getPersonTime())){
+										//返回-1代表已经结账不能修改人员信息，必须修改时先删除结账信息再添加人员添加完成后再次结账。
+										logger.debug(pserson.getPersonTime());
+										resp.getWriter().write("-1");
+										return null;
+									}
+								}
+								
+								
+								
+							}
+							
+							
+							
+							
+							
 							
 							int delNumb = 0;
 							try {
 								
 								
-								 TabHsfPersonExample example = new TabHsfPersonExample();
-								 com.sc.dmh.beans.TabHsfPersonExample.Criteria c = example.createCriteria();
-								 c.andPersonIdIn(idList);
+								 
 								 
 								delNumb = hsfPersonService.deleteByExample(example );
 								

@@ -2,6 +2,7 @@ package com.sc.dmh;
 
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -16,6 +17,7 @@ import com.sc.dmh.beans.CbhsUser;
 import com.sc.dmh.beans.CbhsUserExample;
 import com.sc.dmh.beans.CbhsUserExample.Criteria;
 import com.sc.dmh.beans.TabHsfPerson;
+import com.sc.dmh.beans.TabHsfPersonExample;
 import com.sc.dmh.service.inter.HsfPersonServiceI;
 import com.sc.dmh.service.inter.UserServiceI;
 
@@ -43,10 +45,46 @@ public class HsfPersonTest3 {
 	@Test
 	public void testGet() throws Exception {
 		
-		 TabHsfPerson user = userServiceI.selectByPrimaryKey((long) 1);
+		 TabHsfPerson user = userServiceI.selectByPrimaryKey((long) 514);
 		
 		
 		
+		logger.info(JSON.toJSONStringWithDateFormat(user, "yyyy-MM-dd HH:mm:ss"));
+	}
+	
+	@Test
+	public void testGetDateAfter() throws Exception {
+		
+		 Date p = new Date(2);
+		 Date JZ = new Date(2);
+		
+		logger.info(p);
+		logger.info(JZ);
+		
+		logger.info(JSON.toJSONStringWithDateFormat(!JZ.before(p), "yyyy-MM-dd HH:mm:ss"));
+	}
+	
+	
+	@Test
+	public void testGetSum() throws Exception {
+		
+		 TabHsfPersonExample example = new TabHsfPersonExample();
+		 example.setOrderByClause("person_time");
+		 com.sc.dmh.beans.TabHsfPersonExample.Criteria c = example.createCriteria();
+		 c.andDepIdEqualTo(2);
+		 c.andPersonTimeLessThan(new Date());
+		List<TabHsfPerson> user = userServiceI.selectByExample(example );
+		int sumIn = 0;
+		int sumOut = 0;
+		for(int i=0;i<user.size();i++){
+			int j=user.get(i).getPersonIn();
+			sumIn+=j;
+			int k=user.get(i).getPersonOut();
+			sumOut+=k;
+			
+			}
+		logger.info(sumIn);
+		logger.info(sumOut);
 		logger.info(JSON.toJSONStringWithDateFormat(user, "yyyy-MM-dd HH:mm:ss"));
 	}
 	

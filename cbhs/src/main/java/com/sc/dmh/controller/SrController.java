@@ -41,6 +41,7 @@ import com.sc.dmh.beans.ViewCg;
 import com.sc.dmh.beans.ViewShouru;
 import com.sc.dmh.beans.ViewShouruExample;
 import com.sc.dmh.beans.ViewShouruExample.Criteria;
+import com.sc.dmh.service.inter.HsfJcServiceI;
 import com.sc.dmh.service.inter.HsfShouruServiceI;
 
 import com.sc.dmh.service.inter.UserServiceI;
@@ -66,7 +67,14 @@ public class SrController {
 	@Autowired
 	private ViewShouruServiceI viewSrService;
 	
+	@Autowired
+	private HsfJcServiceI hsfJcServiceI;
 	
+	
+
+	public void setHsfJcServiceI(HsfJcServiceI hsfJcServiceI) {
+		this.hsfJcServiceI = hsfJcServiceI;
+	}
 
 	public void setViewShouruService(ViewShouruServiceI viewSrService) {
 		this.viewSrService = viewSrService;
