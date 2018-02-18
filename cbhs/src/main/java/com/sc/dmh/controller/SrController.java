@@ -1,25 +1,17 @@
 package com.sc.dmh.controller;
 
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.Cookie;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-
-
-
-
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -30,14 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSON;
 import com.sc.dmh.annotation.AuthPassport;
 import com.sc.dmh.beans.CbhsUser;
-import com.sc.dmh.beans.CbhsUserExample;
-import com.sc.dmh.beans.ComboTree;
-import com.sc.dmh.beans.DateMonthFirstLast;
-import com.sc.dmh.beans.TabHsfPerson;
-import com.sc.dmh.beans.TabHsfPersonExample;
+
+import com.sc.dmh.beans.TabHsfJiecun;
+
 import com.sc.dmh.beans.TabHsfShouru;
 import com.sc.dmh.beans.TabHsfShouruExample;
-import com.sc.dmh.beans.ViewCg;
+
 import com.sc.dmh.beans.ViewShouru;
 import com.sc.dmh.beans.ViewShouruExample;
 import com.sc.dmh.beans.ViewShouruExample.Criteria;
@@ -46,9 +36,7 @@ import com.sc.dmh.service.inter.HsfShouruServiceI;
 
 import com.sc.dmh.service.inter.UserServiceI;
 import com.sc.dmh.service.inter.ViewShouruServiceI;
-import com.sc.dmh.util.DateStringUtil;
-import com.sc.dmh.util.MyBeanUtils;
-import com.sc.dmh.util.TreeHelper;
+
 
 
 
@@ -56,7 +44,7 @@ import com.sc.dmh.util.TreeHelper;
 @RequestMapping("/hsf")
 public class SrController {
 
-	
+	private static final Logger logger = Logger.getLogger(SrController.class);
 	
 	@Autowired
 	private UserServiceI userService;
@@ -207,6 +195,21 @@ public class SrController {
 					formHsfShouru.setDepId(userSession.getBumenId());
 				}
 			
+				
+				
+				List<TabHsfJiecun> jcList = hsfJcServiceI.selectLastByDepId(Long.valueOf(userSession.getBumenId().toString()));
+				
+				//结存不为空并且-结账时间不在人员添加日期之前
+				if( !jcList.isEmpty() && !jcList.get(0).getJiecunMonth().before(formHsfShouru.getShouruDate())){
+					
+					//返回-1代表已经结账不能修改人员信息，必须修改时先删除结账信息再添加人员添加完成后再次结账。
+					resp.getWriter().write("-1");
+					return null;
+				}
+				
+				
+				
+				
 				
 				
 					try {
@@ -366,6 +369,9 @@ public class SrController {
 							
 							//统一设置编码
 							resp.setContentType("text/html;charset=utf-8");
+							CbhsUser userSession = (CbhsUser) request.getSession().getAttribute("sessionUser");
+							
+							
 							if(ids == null) return "";
 							
 							//转换参数为list
@@ -382,13 +388,44 @@ public class SrController {
 							
 							
 							
+							TabHsfShouruExample example = new TabHsfShouruExample();
+							com.sc.dmh.beans.TabHsfShouruExample.Criteria criteria = example.createCriteria();
+							
+							//设置查询条件添加日期条件
+							criteria.andShouruIdIn(idList);
+							
+							List<TabHsfShouru> hsfSrList = hsfSrService.selectByExample(example);
+							
+							//获取结账最后记录
+							List<TabHsfJiecun> jcList = hsfJcServiceI.selectLastByDepId(Long.valueOf(userSession.getBumenId().toString()));
+							
+							
+							//结存不为空并且-删除的人员列表不为空
+							if( !jcList.isEmpty() && !hsfSrList.isEmpty()){
+								
+								
+								for(TabHsfShouru sr : hsfSrList){
+									//结账时间不在删除人员日期之前
+									if(!jcList.get(0).getJiecunMonth().before(sr.getShouruDate())){
+										//返回-1代表已经结账不能修改人员信息，必须修改时先删除结账信息再添加人员添加完成后再次结账。
+										logger.debug(sr.getShouruDate());
+										resp.getWriter().write("-1");
+										return null;
+									}
+								}
+								
+								
+								
+							}
+							
+							
+							
+							
+							
+							
 							int delNumb = 0;
 							try {
-								TabHsfShouruExample example = new TabHsfShouruExample();
-								com.sc.dmh.beans.TabHsfShouruExample.Criteria criteria = example.createCriteria();
 								
-								//设置查询条件添加日期条件
-								criteria.andShouruIdIn(idList);
 //								
 								 delNumb = hsfSrService.deleteByExample(example);
 								

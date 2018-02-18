@@ -17,7 +17,7 @@ $(function(){
 	//甩挂信息表
 	$('#bx').datagrid({    
 	    url : '/cbhs/hsf/getCgAllNotBx',   
-	    
+	    fit: true,//固定表头
 	    striped : true,
 	    rownumbers : true,
 	    border : false,

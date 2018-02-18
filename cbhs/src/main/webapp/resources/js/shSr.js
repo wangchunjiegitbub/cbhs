@@ -17,7 +17,7 @@ $(function(){
 	//甩挂信息表
 	$('#shsr').datagrid({    
 	    url : '/cbhs/hsf/getSrAll',   
-	    
+	    fit: true,//固定表头
 	    striped : true,
 	    rownumbers : true,
 	    border : false,

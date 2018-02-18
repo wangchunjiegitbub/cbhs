@@ -17,7 +17,7 @@ $(function(){
 	//甩挂信息表
 	$('#szmx').datagrid({    
 	    url : '/cbhs/hsf/getSzmxAll',   
-	    
+	    fit: true,//固定表头
 	    striped : true,
 	    rownumbers : true,
 	    border : false,
