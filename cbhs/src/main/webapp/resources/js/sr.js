@@ -17,7 +17,7 @@ $(function(){
 	//甩挂信息表
 	$('#sr').datagrid({    
 	    url : '/cbhs/hsf/getSrAll',   
-	    
+	    fit: true,//固定表头
 	    striped : true,
 	    rownumbers : true,
 	    border : false,
@@ -164,7 +164,7 @@ $(function(){
     								$('#sr_add').dialog('close').form('reset'); 
                                     $('#sr').datagrid('reload'); 
                                 }else if(data == -1) { 
-                                	$.messager.alert('错误提示!!!', '不能创建！', 'error');
+                                	$.messager.alert('错误提示!!!', '已经结账不能修改收入信息，必须修改时请先删除结账信息！', 'error');
                                 	$('#sr_add').dialog('close').form('reset'); 
                                     $('#sr').datagrid('reload'); 
                                    
@@ -321,20 +321,35 @@ $(function(){
                                    ids :ids.join(','), 
                                     
                                }, 
-                               beforeSend :function (){ 
-                                  $('#sr').datagrid('loading'); 
-                               }, 
+//                               beforeSend :function (){ 
+//                                  $('#sr').datagrid('loading'); 
+//                               }, 
                                success :function (data){ 
-                                   if (data){ 
-                                      $('#sr').datagrid('loaded'); 
-                                      $('#sr').datagrid('reload'); 
-                                      $('#sr').datagrid('unselectAll'); 
-                                      $.messager.show({ 
+                                   
+                            	   
+                            	   if (data >0) { 
+                            		   $('#sr').datagrid('loaded'); 
+                                       $('#sr').datagrid('reload'); 
+                                       $('#sr').datagrid('unselectAll');  
+                                       $.messager.show({ 
 
-                                          title : '提示', 
-                                          msg : data + '个信息被删除成功！', 
-                                       }); 
-                                   } 
+                                           title : '提示', 
+                                           msg : data + '个信息被删除成功！', 
+                                        });  
+                                   }else if(data == -1) { 
+                                   	$.messager.alert('错误提示!!!', '已经结账不能修改收入信息，必须修改时请先删除结账信息！', 'error');
+                                   }else {
+                                   	$.messager.alert('警告操作', '未知操作或没有修改数据， 请重新提交！', 'warning');
+                                   }
+                            	   
+                            	   
+                            	   
+                            	   
+                            	   
+                            	   
+                            	   
+                            	   
+                            	 
                                }, 
                            }); 
                        } 

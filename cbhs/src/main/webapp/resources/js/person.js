@@ -326,20 +326,28 @@ $(function(){
                                    ids :ids.join(','), 
                                     
                                }, 
-                               beforeSend :function (){ 
-                                  $('#person').datagrid('loading'); 
-                               }, 
+//                               beforeSend :function (){ 
+//                                  $('#person').datagrid('loading'); 
+//                               }, 
                                success :function (data){ 
-                                   if (data){ 
-                                      $('#person').datagrid('loaded'); 
-                                      $('#person').datagrid('reload'); 
-                                      $('#person').datagrid('unselectAll'); 
-                                      $.messager.show({ 
+                                   
+                            	   
+                            	    
+                                   if (data >0) { 
+                                	   $('#person').datagrid('loaded'); 
+                                       $('#person').datagrid('reload'); 
+                                       $('#person').datagrid('unselectAll'); 
+                                       $.messager.show({ 
 
-                                          title : '提示', 
-                                          msg : data + '个信息被删除成功！', 
-                                       }); 
-                                   } 
+                                           title : '提示', 
+                                           msg : data + '个信息被删除成功！', 
+                                        });  
+                                   }else if(data == -1) { 
+                                   	$.messager.alert('错误提示!!!', '已经结账不能修改人员信息，必须修改时请先删除结账信息！', 'error');
+                                   }else {
+                                   	$.messager.alert('警告操作', '未知操作或没有修改数据， 请重新提交！', 'warning');
+                                   }
+                            	                               	   
                                }, 
                            }); 
                        } 

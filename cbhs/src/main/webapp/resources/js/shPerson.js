@@ -17,7 +17,7 @@ $(function(){
 	//甩挂信息表
 	$('#shperson').datagrid({    
 	    url : '/cbhs/hsf/getPerson',   
-	    
+	    fit: true,//固定表头
 	    striped : true,
 	    rownumbers : true,
 	    border : false,
