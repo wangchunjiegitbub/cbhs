@@ -1,16 +1,13 @@
 package com.sc.dmh.controller;
 
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.Cookie;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,15 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSON;
 import com.sc.dmh.annotation.AuthPassport;
 import com.sc.dmh.beans.CbhsUser;
-import com.sc.dmh.beans.CbhsUserExample;
-import com.sc.dmh.beans.ComboTree;
-import com.sc.dmh.beans.DateMonthFirstLast;
+
 import com.sc.dmh.beans.TabHsfJiecun;
-import com.sc.dmh.beans.TabHsfPerson;
-import com.sc.dmh.beans.TabHsfPersonExample;
+
 import com.sc.dmh.beans.TabHsfShouru;
 import com.sc.dmh.beans.TabHsfShouruExample;
-import com.sc.dmh.beans.ViewCg;
+
 import com.sc.dmh.beans.ViewShouru;
 import com.sc.dmh.beans.ViewShouruExample;
 import com.sc.dmh.beans.ViewShouruExample.Criteria;
@@ -42,9 +36,7 @@ import com.sc.dmh.service.inter.HsfShouruServiceI;
 
 import com.sc.dmh.service.inter.UserServiceI;
 import com.sc.dmh.service.inter.ViewShouruServiceI;
-import com.sc.dmh.util.DateStringUtil;
-import com.sc.dmh.util.MyBeanUtils;
-import com.sc.dmh.util.TreeHelper;
+
 
 
 
